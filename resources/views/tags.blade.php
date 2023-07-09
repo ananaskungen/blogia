@@ -1,30 +1,20 @@
 <x-admin-layout>
-  
-    {{-- 
-          <div class=" flex justify-end p-6">
-              <a href="{{ route('jobseekers.create')}}" class=" right-0 flex items-center
-              text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-sm px-5 py-2.5 text-center 
-              mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 font-bold">
-                  Lägg till ny Kategori
-              </a> 
-          </div>
-           --}}
-  
+
   
       <div class="w-full h-screen bg-gray-100">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex flex-col">
               <div class="mb-4">
-                <h1 class="text-3xl font-bolder leading-tight text-gray-900">Categories</h1>
+                <h1 class="text-3xl font-bolder leading-tight text-gray-900">Tags</h1>
               </div>
               <div class="-mb-2 py-4 flex flex-wrap flex-grow justify-between">
                 <div class="flex items-center py-2">
                   <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-searcg" type="text" placeholder="Search">
                 </div>
                 <div class="flex items-center py-2">
-                  <a href="{{ route('categories.create')}}"
+                  <a href="{{ route('tags.create')}}"
                      class="inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-                    New Category
+                    New Tag
                   </a>
                 </div>
               </div>
@@ -42,9 +32,6 @@
                           Name
                         </th>
                         <th class="px-6 py-3 text-left font-medium">
-                          Description
-                        </th>
-                        <th class="px-6 py-3 text-left font-medium">
                           Slug
                         </th>
                         <th class="px-6 py-3 text-left font-medium">
@@ -56,7 +43,7 @@
                     </thead>
                     <!-- HEAD end -->
                     <!-- BODY start -->
-                    @foreach ($categories as $category)
+                    @foreach ($tags as $tag)
            
   
                     <tbody class="bg-white">
@@ -66,31 +53,29 @@
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="text-sm leading-5 text-gray-900">
-                              {{$category->name}}
+                              {{$tag->name}}
                           </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          {{ $category->description }}
-                        </td>
+                  
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="text-sm leading-5 text-gray-900">
-                              {{ $category->slug }}
+                              {{ $tag->slug }}
                           </div>
                         </td>
                 
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                          {{$category->created_at}}
+                          {{$tag->created_at}}
                         </td>
                         <td class="px-6 py-4 flex whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                    
-                            <a href="categories/{{$category->id}}">
+                            <a href="tags/{{$tag->id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                 </svg>  
                             </a>
 
                
-                            <form class="d-inline-block" method="POST" action="{{ route('categories.destroy', ['category' => $category]) }}">
+                            <form class="d-inline-block" method="POST" action="{{ route('tags.destroy', ['tag' => $tag]) }}">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger confirm">

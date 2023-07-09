@@ -37,14 +37,25 @@
                         Dashboard
                     </x-side-nav-link>
 
-                <x-side-nav-link href="{{ route('categories')}}"  :active="request()->routeIs('categories')">
-                        Kategorier
+                    <x-side-nav-link href="{{ route('categories')}}"  :active="request()->routeIs('categories')">
+                        Categories
                     </x-side-nav-link> 
 
+                    <x-side-nav-link href="{{ route('tags')}}"  :active="request()->routeIs('tags')">
+                        Tags
+                    </x-side-nav-link> 
 
-                 {{--    <x-side-nav-link href="{{ route('suppliers')}}"  :active="request()->routeIs('suppliers')">
-                        Leverantörer
-                    </x-side-nav-link> --}}
+                    <x-side-nav-link href="{{ route('posts')}}"  :active="request()->routeIs('posts')">
+                        Posts
+                    </x-side-nav-link> 
+
+             {{--   <x-side-nav-link href="{{ route('subscriptions')}}"  :active="request()->routeIs('subscriptions')">
+                        Subscriptions
+                    </x-side-nav-link> 
+
+                    <x-side-nav-link href="{{ route('users')}}"  :active="request()->routeIs('users')">
+                        Users
+                    </x-side-nav-link>  --}}
 
             </nav>
         </aside>

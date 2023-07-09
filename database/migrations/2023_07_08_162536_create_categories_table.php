@@ -14,13 +14,8 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('body')->nullable(); 
-            $table->text('excerpt')->nullable(); 
             $table->string('description');
             $table->string('slug')->unique();
-            $table->boolean('is_public')->default(false);
-            $table->string('file_path_attachment')->nullable();
-            
             $table->timestamps();
 
 

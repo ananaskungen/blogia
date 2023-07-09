@@ -28,31 +28,21 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-   /*      $request->validate([
-            'main_category_name' => 'required|string|max:255',
-            'subcategories.*' => 'nullable|string|max:255',
-        ]);
+        $category = New Category();
+        $category->name = request('name');
+        $category->description = request('description');
+        $category->slug = request('slug');
+        $category->save();
     
-        $mainCategory = Category::create(['name' => $request->main_category_name]);
-    
-        $subcategories = array_filter($request->subcategories);
-    
-        foreach ($subcategories as $subcategoryName) {
-            Subcategory::create([
-                'name' => $subcategoryName,
-                'category_id' => $mainCategory->id,
-            ]);
-        } */
-    
+
         return redirect('categories');
     }
 
     public function edit(Category $category)
     {
-       /*  $subcategories = $category->subcategories; */
         return view('categories.edit', [
             'category' => $category,
-         /*    'subcategories' => $subcategories */
+       
         ]);
     }
     
@@ -66,11 +56,9 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-/*         $subcategories = $category->subcategories; */
-    
+   
         return view('categories.edit', [
             'category' => $category,
-     /*        'subcategories' => $subcategories */
         ]);
     }
     
