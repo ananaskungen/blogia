@@ -44,16 +44,25 @@
 
                                 <div>
                                     <label>New File:</label>
-                                    <input name="is_public" placeholder="Name" value="{{ $post->file_path_attachment }}" class="border" >
+                                    <input name="file_path_attachment" type="file" placeholder="Name" value="{{ $post->file_path_attachment }}" class="border" >
                                 </div>
 
                                 <div>
+                                    <label>Category:</label>
+                                    <select name="category_id" class="border">
+                                        <option value="">Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                  <div>
                                     <label>Public:</label>
-                                    <select required class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="is_public" name="is_public">
-                                        <option></option>
-                                        <option value="1">True</option>
-                                        <option value="0">False</option>
-                                      </select>
+                                    <select name="is_public" class="border">
+                                        <option value="1" {{ $post->is_public == 1 ? 'selected' : '' }}>True</option>
+                                        <option value="0" {{ $post->is_public == 0 ? 'selected' : '' }}>False</option>
+                                    </select>
                                 </div>
     
                                 <input type="submit"  class="w-24 inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">

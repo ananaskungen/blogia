@@ -26,7 +26,7 @@
                               <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                                 Title
                               </label>
-                              <input name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
+                              <input required name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
                             </div>
 
                             <div class="mb-6">
@@ -43,7 +43,6 @@
                                 </label>
                                 <textarea name="excerpt" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="slug">
                                 </textarea>
-
                             </div>
 
                             <div class="mb-6">
@@ -54,8 +53,28 @@
                             </div>
 
                             <div class="mb-6">
-                    
+                              <label>Category:</label>
+                                <select name="category_id" id="category" class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" >
+                                  @foreach ($categories as $category)
+                                      <option></option>
+                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                  @endforeach
+                              </select>      
+                            </div> 
 
+                            <div class="mb-6">
+                              <label>Tags:</label>
+                             @foreach ($tags as $tag)
+                                <label>
+                                  <input type="checkbox" name="tags[]" value="{{ $tag->id }}"> {{ $tag->name }}
+                                </label>
+                                <br>
+                            @endforeach       
+                          </div> 
+                          
+
+
+                            <div class="mb-6">
                                 <label>Public:</label>
                                 <select required class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="is_public" name="is_public">
                                     <option></option>

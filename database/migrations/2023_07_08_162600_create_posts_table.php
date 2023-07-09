@@ -20,8 +20,10 @@ return new class extends Migration
             $table->boolean('is_public')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });
     }

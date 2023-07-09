@@ -16,6 +16,7 @@ class Post extends Model
         'excerpt',
         'file_path_attachment',
         'is_public',
+        'category_id',
     ];
 
     public function category()
@@ -28,8 +29,10 @@ class Post extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
+
+    
 
 
 }
