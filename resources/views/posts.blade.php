@@ -51,7 +51,7 @@
                     </thead>
                     <!-- HEAD end -->
                     <!-- BODY start -->
-                    @foreach ($posts as $post)
+                    @foreach ($posts->sortByDesc('created_at') as $post)
            
   
                     <tbody class="bg-white">
@@ -61,15 +61,17 @@
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="text-sm leading-5 text-gray-900">
-                              {{$post->title}}
+                            {{ Str::limit($post->title, 30) }}
                           </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          {{ $post->content }}
+                          {{ Str::limit($post->content, 50) }}
+
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="text-sm leading-5 text-gray-900">
-                              {{ $post->excerpt }}
+                            {{ Str::limit($post->excerpt, 40) }}
+
                           </div>
                         </td>
 
