@@ -113,8 +113,14 @@ class PostsController extends Controller
                 return back()->with('error', 'Failed to upload attachment file.');
             }
         }
-    
-        $post->update($request->all());
+        
+        $post->update($request->except(['tags', '_token', '_method'])); // Update all fields except the 'tags', '_token', and '_method' fields
+
+        if ($request->has('tags')) {
+            $post->tags()->sync($request->input('tags')); // Update the tags relationship
+        } else {
+            $post->tags()->detach(); // Remove all tags associated with the post
+        }
     
         return redirect()->route('posts')->with('success', 'Working!');
     }

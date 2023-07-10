@@ -56,18 +56,21 @@
   
                     <tbody class="bg-white">
                       <tr>
+
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <input class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" type="checkbox" />
                         </td>
+
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="text-sm leading-5 text-gray-900">
                             {{ Str::limit($post->title, 30) }}
                           </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          {{ Str::limit($post->content, 50) }}
 
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          {{ Str::limit(strip_tags(html_entity_decode($post->content)), 50) }}
                         </td>
+                      
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div class="text-sm leading-5 text-gray-900">
                             {{ Str::limit($post->excerpt, 40) }}
@@ -82,6 +85,7 @@
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                           {{$post->created_at}}
                         </td>
+                        
                         <td class="px-6 py-4 flex whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                    
                             <a href="posts/{{$post->id}}">
