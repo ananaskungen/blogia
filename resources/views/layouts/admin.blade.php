@@ -54,11 +54,11 @@
 
              {{--   <x-side-nav-link href="{{ route('subscriptions')}}"  :active="request()->routeIs('subscriptions')">
                         Subscriptions
-                    </x-side-nav-link> 
+                    </x-side-nav-link> --}}
 
                     <x-side-nav-link href="{{ route('users')}}"  :active="request()->routeIs('users')">
                         Users
-                    </x-side-nav-link>  --}}
+                    </x-side-nav-link>  
 
             </nav>
         </aside>

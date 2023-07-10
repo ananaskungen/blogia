@@ -2,12 +2,14 @@
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoriesController;
 
@@ -29,7 +31,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -78,6 +80,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
 
     Route::get('/posts/show/{post_title}/{subcat}', [PostsController::class, 'show'])->name('posts.show');
+});
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('/users', UsersController::class);
+    Route::get('/users', function () {
+        return view('users', [
+            'users' => User::all()
+        ]);
+    })->name('users');
+    Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+
+    Route::get('/users/show/{user}/{subcat}', [UsersController::class, 'show'])->name('users.show');
 });
 
 require __DIR__.'/auth.php';
