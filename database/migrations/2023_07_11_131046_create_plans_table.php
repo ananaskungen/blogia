@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 8, 2);
-            $table->integer('duration'); // You can modify the type as per your needs
-            $table->text('description')->nullable();
+            $table->string('slug');
+            $table->string('stripe_plan');
+            $table->integer('price');
+            $table->string('description');
+
             $table->timestamps();
         });
     }

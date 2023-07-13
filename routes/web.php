@@ -12,6 +12,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PlansController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,5 +95,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/users/show/{user}/{subcat}', [UsersController::class, 'show'])->name('users.show');
 });
+
+/* Stripe Related */
+Route::get('/subscribe', [SubscriptionsController::class, 'subscribe'])->name('subscribe');
+Route::post('/process-payment', [SubscriptionsController::class, 'processPayment'])->name('process-payment');
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/plans', [PlansController::class, 'index']);
+    Route::get('/plans({plan}', [PlansController::class, 'show'])->name("plans.show");
+    Route::post('/subscription', [PlansController::class, 'subscription'])->name("subscription.create");
+});
+
 
 require __DIR__.'/auth.php';

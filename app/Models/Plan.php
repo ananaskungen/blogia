@@ -10,8 +10,21 @@ class Plan extends Model
 {
     use HasFactory;
 
-    public function subscriptions()
+    protected $fillable = [
+        'name',
+        'slug',
+        'stripe_plan',
+        'price',
+        'description'
+    ];
+
+
+    public function getRouteKeyName()
     {
-        return $this->hasMany(Subscription::class);
+        return 'slug';
     }
+
+    
+
+    
 }
