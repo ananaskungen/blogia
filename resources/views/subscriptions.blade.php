@@ -28,61 +28,59 @@
                         Email
                       </th>
                       <th class="px-6 py-3 text-left font-medium">
-                        Role
+                        Status
                       </th>
                    
                       <th class="px-6 py-3 text-left font-medium">
-                        Created
+                        Renewal Date
                       </th>
-                      <th class="px-6 py-3 text-left font-medium">
-                      </th>
+          
                     </tr>
                   </thead>
                   <!-- HEAD end -->
                   <!-- BODY start -->
-          {{--  @foreach ($users as $user)
-                  
-
-                  <tbody class="bg-white">
-                    <tr>
+                  @foreach ($subscriptions as $subscription)
+                  <tr>
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <input class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" type="checkbox" />
+                          <input class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" type="checkbox" />
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <div class="text-sm leading-5 text-gray-900">
-                           {{$user->name}}
-                        </div>
+                          <div class="text-sm leading-5 text-gray-900">
+                              {{ $subscription->user->name }}
+                          </div>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        {{ $user->email }} 
+                          {{ $subscription->user->email }}
                       </td>
-
-                      @if ($user->is_role === 'subscriber')
-                 
+                      @if ($subscription->stripe_status === 'active')
+                   
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-gray-800">
-                         {{ $user->is_role }} 
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-gray-800">
+                         {{ $subscription->stripe_status }} 
                         </span>
                       </td>
 
-                      @elseif($user->is_role === 'admin')
+                      @elseif($subscription->stripe_status === 'inactive')
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-gray-800">
-                         {{ $user->is_role }} 
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-gray-800">
+                         {{ $subscription->stripe_status }} 
                         </span>
                       </td>
 
-                      @elseif($user->is_role === 'standard_user')
+                      @elseif($subscription->stripe_status === 'pending')
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-gray-800">
-                         {{ $user->is_role }} 
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                         {{ $subscription->stripe_status }} 
                         </span>
                       </td>
 
                       @endif
                       <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                        {{$user->created_at}} 
-                      </td> --}}
+                          {{ $subscription->ends_at }}
+                      </td>
+                  </tr>
+              @endforeach
+             
                       <td class="px-6 py-4 flex whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                  
                    {{--          <a href="{{ route('users.edit', $user->id) }}">

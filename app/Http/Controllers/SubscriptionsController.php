@@ -10,10 +10,8 @@ class SubscriptionsController extends Controller
     //
     public function index()
     {
-        //
-        $subscriptions = Subscription::all();
-
-        return view('subscriptions', ['subscriptions' => $subscriptions]);
+        $subscriptions = Subscription::with('user')->get();
+        return view('subscriptions', compact('subscriptions'));
     }
 
 

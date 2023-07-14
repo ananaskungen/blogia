@@ -5,14 +5,16 @@ use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Category;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\PlansController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\PlansController;
+use App\Http\Controllers\SubscriptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +96,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
 
     Route::get('/users/show/{user}/{subcat}', [UsersController::class, 'show'])->name('users.show');
+});
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('/subscriptions', SubscriptionsController::class);
+    Route::get('/subscriptions', function () {
+        return view('subscriptions', [
+            'subscriptions' => Subscription::all()
+        ]);
+    })->name('subscriptions');
+    Route::get('/subscriptions/{subscriber}/edit', [SubscriptionsController::class, 'edit'])->name('subscribers.edit');
+
+    Route::get('/subscriptions/show/{subscriber}/{subcat}', [SubscriptionsController::class, 'show'])->name('subscribers.show');
 });
 
 /* Stripe Related */
