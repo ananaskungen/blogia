@@ -1,3 +1,5 @@
+@if (auth()->user()->is_role === 'super_admin')
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -5,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Blogia') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -17,6 +19,9 @@
 
     </head>
     <body class="font-sans antialiased">
+
+
+
        <div class="relative min-h-screen md:flex" x-data="{ open: true }">
         
         <aside :class="{ '-translate-x-full': !open }" class="z-10 bg-blue-800 text-blue-100 w-64 px-2 py-4 absolute inset-y-0 
@@ -118,6 +123,11 @@
             
         </main>
     </div>
+
     </body>
 </html>
-
+@else
+@php
+    return redirect()->route('welcome');
+@endphp
+@endif

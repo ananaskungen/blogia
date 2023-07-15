@@ -72,6 +72,13 @@
                           </span>
                         </td>
 
+                        @elseif($user->is_role === 'super_admin')
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-gray-800">
+                           {{ $user->is_role }} 
+                          </span>
+                        </td>
+
                         @elseif($user->is_role === 'standard_user')
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-gray-800">
